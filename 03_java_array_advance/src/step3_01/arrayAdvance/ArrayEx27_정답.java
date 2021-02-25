@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 
 
-//2021.02.24 21:37 ~ 
+//2021.02.24 21:37 ~ 22:00
 public class ArrayEx27_정답 {
 
 	public static void main(String[] args) {
@@ -44,23 +44,31 @@ public class ArrayEx27_정답 {
 			if (inputNumber == 1) currentIndex --;
 			else currentIndex ++;
 				
-			if (currentIndex == 2 || currentIndex == 7) {		//벽 만난 경우
+			
+			if (currentIndex < 0 || currentIndex > game.length - 1) {
+				
+				currentIndex = previousIndex;
+				game[currentIndex] = 2;
+				continue; 	//양 끝 도달
+			}
+
+			if (game[currentIndex] == 1 ) {		//벽 만난 경우
 					
 				System.out.print("벽을 격파하시려면 3을 입력하세요 => ");
 				int answer = scan.nextInt();
 					
 				if (answer == 3 && currentIndex == 2) game[currentIndex] = 0; 	// 벽 격파
 				else if(answer == 3 && currentIndex == 7) game[currentIndex] = 0;
+				else {	
+					currentIndex = previousIndex;
+					continue;
+				}
 					
 			}
 			
 			
 				
-			if (currentIndex == 0 || currentIndex == game.length - 1) {
-				
-				game[currentIndex] = 2;
-				continue; 	//양 끝 도달
-			}
+			
 			
 			for (int i = 0; i < game.length; i++) {
 				

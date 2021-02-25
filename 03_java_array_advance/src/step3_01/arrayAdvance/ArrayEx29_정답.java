@@ -1,5 +1,6 @@
 package step3_01.arrayAdvance;
 
+import java.util.Arrays;
 import java.util.Scanner;
 /*
  * # 숫자 야구 게임
@@ -19,61 +20,89 @@ import java.util.Scanner;
  * 1 7 3        : 3s  > 게임종료
  */
 
+//2021.02.25 21:18 ~ 21:44
 public class ArrayEx29_정답 {
 
 	public static void main(String[] args) {
 		
 		Scanner scan = new Scanner(System.in);
-
+		
 		int[] com = {1,7,3};
-		int[] me = new int[3];
 		
-		int getNum = 0;
-		int check = 0;
 		
-		while ( true ) {
+		while(true) {		
 			
-			int strike = 0;
-			int ball = 0;
+			int[] me  = new int[3];
 			
-			for (int i=0; i<3; i++) {
+			int numberofStrike = 0;
+			int numberofBall = 0;
+			
+			int indexofMe = 0;
+			
+		
+			// 숫자 입력받아서 me 배열 만들기
+			while(true) {
 				
-				System.out.print("[" + (i+1)+"] 1~9 입력 : ");
-				getNum = scan.nextInt();
 				
-				check = 1;
-				for (int j=0; j<i; j++) {
-					if (getNum == me[j]) 
-						check = -1;
-				}
+				boolean isExist = false;
 				
-				if (check == -1) 	i--;
-				else 				me[i] = getNum;
-			
-			}
-			
-			System.out.print("me = [ ");
-			for (int i=0; i<3; i++) {
-				System.out.print(me[i] + " ");
-			}
-			System.out.print("] ");
-			
-			for (int i=0;i<3;i++) {
-				for (int j=0; j<3; j++) {
-					if (com[i] == me[j]) {
-						if     (i == j) 	strike++;
-						else if(i != j) 	ball++;
+				if (indexofMe == me.length ) break;
+				
+				System.out.print("1~9 사이의 숫자를 하나 입력하세요 => ");
+				int inputNumber = scan.nextInt();
+				
+				for (int i = 0; i < me.length; i++) {		//중복숫자 있는지 확인
+					
+					if (inputNumber == me[i]) {
+						
+						isExist = true;
+						System.out.println("중복되는 숫자는 불가능합니다.");
+						System.out.println();
+						break;
 					}
 				}
-			}
 				
-			System.out.println(strike + "," + ball);
-			if (strike == 3) 
-				break;
+				if (isExist) continue;
+				else me[indexofMe ++] = inputNumber;
+				
+			}
+	
+			System.out.println();
 			
+			// com과 비교하기
+			
+			for (int i = 0; i < me.length; i++) {		
+				
+				for (int j = 0; j < com.length; j++) {
+					
+					if (me[i] == com[j]) {
+						
+						if ( i == j) numberofStrike ++;
+						else numberofBall ++;
+					}
+	
+				}
+
+			}
+			
+			if (numberofBall == 0 && numberofStrike == 0) System.out.println("없음");
+			else {
+				System.out.println(numberofBall + "볼, " + numberofStrike +"스트라이크");
+			}
+		
+			if (numberofStrike == 3) {
+				
+				System.out.println("정답");
+				break;
+			}
+			
+			
+			System.out.println();
 		}
 		
-		scan.close();
+		
+		
+		
 		
 	}
 	

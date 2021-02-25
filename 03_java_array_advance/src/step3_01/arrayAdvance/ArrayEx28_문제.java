@@ -1,5 +1,6 @@
 package step3_01.arrayAdvance;
 
+import java.util.Random;
 
 /*
  * # 중복숫자 금지[2단계]
@@ -12,8 +13,9 @@ package step3_01.arrayAdvance;
 public class ArrayEx28_문제 {
 
 	public static void main(String[] args) {
-		
+
 		int[] arr = new int[5];
+		
 		
 	}
 	
