@@ -5,7 +5,7 @@ package step3_01.arrayAdvance;
  *	# 2차원배열 기본문제[3단계]
 */
 
-//2021.02.27 21:18 ~ 21:
+//2021.03.02 16:15 ~ 16:21
 public class ArrayEx37_정답 {
 
 	public static void main(String[] args) {
@@ -23,12 +23,17 @@ public class ArrayEx37_정답 {
 		// 정답 1) 410, 810, 1210
 		
 		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
+			
+			int sumofRow = 0;
+			
+			for (int j = 0; j < arr[i].length; j++) {
+			
+				sumofRow += arr[i][j];
 				
-				garo[i] += arr[i][j];
+				
 			}
 			
-			System.out.print(garo[i] + " ");
+			System.out.print(sumofRow + " ");
 		}
 		
 		System.out.println();
@@ -37,14 +42,16 @@ public class ArrayEx37_정답 {
 		// 정답 2) 603, 606, 609, 612
 
 
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				
-				sero[j] += arr[i][j];
-				
-				if ( j == arr.length - 1 ) System.out.print(sero[j] + " ");
-			}
+		for (int i = 0; i < sero.length; i++) {
 			
+			int sumofColumn = 0;
+			
+			for (int j = 0; j < garo.length; j++) {
+				
+				sumofColumn += arr[j][i];
+			}
+		
+			System.out.print(sumofColumn +" ");
 		}
 
 	}
