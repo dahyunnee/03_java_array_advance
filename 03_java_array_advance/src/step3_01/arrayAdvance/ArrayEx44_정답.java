@@ -8,7 +8,7 @@ import java.util.Scanner;
 //# 빙고 Ver1(플레이어 1명)
 
 
-//2021.02.26 19:11 ~ 
+//2021.02.26 19:11 ~ 19:50
 public class ArrayEx44_정답 {
 
 	public static void main(String[] args) {
@@ -137,22 +137,34 @@ public class ArrayEx44_정답 {
 			//0,4 1,3 2,2, 3,1 4,0
 		
 			for (int k = 0; k < mark.length; k++) {
-				for (int j = 0; j < mark.length - 1; j++) {		//가로 확인 0,0 0,1 ... 0,4 
+				
+				int numberofOne = 0;
+				
+				for (int j = 0; j < mark.length ; j++) {		//가로 확인 0,0 0,1 ... 0,4 
 																// 1,0 1,1 ... 1, 4
-					if ( mark[k][j] == 1 ) continue;
 					
-					if ( j == maxNum - 1 ) win = 1;
+					if ( mark[k][j] == 1 ) {
+						
+						numberofOne ++;
+						
+					}
+					
+					if ( j == mark.length - 1 && numberofOne == 5) win = 1;
 					
 				}
 				
-				for (int j = 0; j < mark.length - 1; j++) {		//세로 확인
+				numberofOne = 0;
+				
+				for (int j = 0; j < mark.length ; j++) {		//세로 확인
 					
-					if ( mark[j][k] == 1 ) continue;
+					if ( mark[j][k] == 1 ) numberofOne ++;
 					
-					if ( j == mark.length - 1 ) win = 1;
+					if ( j == mark.length - 1 && numberofOne == 5 ) win = 1;
 					
 				}
 
+				numberofOne = 0;
+				
 				if (k==0) {		//대각선 확인
 					
 					if (mark[k][k] == 1 && mark[k+1][k+1] == 1 && mark[k+2][k+2] == 1 && mark[k+3][k+3] == 1 && mark[k+4][k+4] == 1) win = 1;//왼->오
