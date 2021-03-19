@@ -49,21 +49,28 @@ public class ArrayEx47_테스트문제정답 {
 		
 		int[] movingValue = new int[5];
 		
-		//1번
-		System.out.println("[ 1번 ]");
+
 		while(true) {
 
-			System.out.println(count);
+			System.out.println("이제저장할row:" + count);
 			System.out.println();
 			for (int i = 0; i < game.length; i++) {
 				
 				for (int j = 0; j < game[i].length; j++) {
 					
-					if ( count % 5 == 0  && game[i][j] == 0) {	//5번 기준 처음위치 저장
+					if (game[i][j] == 0) {	//5번 기준 처음위치 저장
 						
-						yx[count][0] = i;
-						yx[count++][1] = j;
+						if (count % 6 == 0) {
+							
+							System.out.println("==처음위치");
+							yx[count][0] = i;
+							yx[count][1] = j;
+							
+							count ++;
+						}
 						
+						currentCol = j;
+						currentRow = i;
 					}
 					
 					System.out.print(game[i][j] + " ");
@@ -75,17 +82,33 @@ public class ArrayEx47_테스트문제정답 {
 			int prevCol = currentCol;
 			int prevRow = currentRow;
 			
-			
+			//cnt 
+			// 0  => 처음위치  
+			// 1
+			// 2
+			//3
+			//4
+			// 5
+			// 6 
+			// 7 -> 돌아가기
+			// 7 -> 처음위치
+			// 8
+			// 9
+			// 10
+			// 11 
+			//12 -> 돌아가기
+			//12 -> 처음 위치
 			
 			//2번과 결합 
+			System.out.println("count " + count);
 			if ( (count-2) % 5 == 0 && count != 2) {
 				
 				System.out.println("5번 입력해서 왔던 길로 되돌아 갑니다. ");
 				
 				//돌아가기
-				// i = count - 5 ~ count - 1
-				for (int i = count - 3 ; i > count - 8; i--) {
-					
+				
+				for (int i = count - 3 ; i >= count - 7; i--) {
+					//i번만큼 반복
 					System.out.println("i = " + i);
 					//현재위치 찾기
 				
@@ -129,14 +152,13 @@ public class ArrayEx47_테스트문제정답 {
 					currentCol = movetoCol;
 					
 					System.out.println(currentRow + "/" + currentCol);
-						
-				}
-				
-				
-
+					
+				}	
 				
 			}
 			
+			
+			//1번
 			System.out.print("1) left 2)right 3)up 4)down 5)되감기 6) 종료    => ");
 			int getNumber = scan.nextInt();
 			
@@ -154,7 +176,7 @@ public class ArrayEx47_테스트문제정답 {
 				if ( getNumber == 1 ) {
 					
 					if ( currentCol != 0 ) currentCol --;
-					
+					else count ++;
 					 
 				}
 			
@@ -162,16 +184,19 @@ public class ArrayEx47_테스트문제정답 {
 				else {
 					
 					if ( currentCol != game.length - 1) currentCol ++;
+					else count ++;
 				}
 				
+				System.out.println(currentRow + "/" + currentCol);
 				movetoValue = game[currentRow][currentCol]; 
 				game[currentRow][currentCol] = 0;
 				game[currentRow][prevCol] = movetoValue;
-				
+				//PREVCOL이 이상???
 				
 				yx[count][0] = currentRow;
 				yx[count ++][1] = currentCol; 
 
+				
 				continue;
 			}
 			
@@ -180,11 +205,13 @@ public class ArrayEx47_테스트문제정답 {
 				if ( getNumber == 3 ) {
 					
 					if ( currentRow != 0 ) currentRow --;
+					else count ++;
 				}
 				
 				else {
 					
 					if ( currentRow != game.length - 1) currentRow ++;
+					else count ++;
 				}
 				
 				movetoValue = game[currentRow][currentCol]; 
@@ -200,25 +227,29 @@ public class ArrayEx47_테스트문제정답 {
 	
 			if ( getNumber == 5 ) {
 				
-				if ( currentRow != game.length - 1 && currentCol != game[0].length - 1) {
-					
-					
-					for (int i = 0; i < game.length; i++) {
-						for (int j = 0; j < game[i].length; j++) {
+				
+				for (int i = 0; i < game.length; i++) {
+					for (int j = 0; j < game[i].length; j++) {
+						
+						if (game[i][j] == movetoValue) {
 							
-							if (game[i][j] == movetoValue) game[i][j] = 0;
+							game[i][j] = 0;
+							
+							currentRow = i;
+							currentCol = j;
 						}
 					}
-					
-					game[currentRow][currentCol] = movetoValue;	
-					
 				}
+				
+				game[prevRow][prevCol] = movetoValue;	
 				
 				yx[count][0] = currentRow;
 				yx[count ++][1] = currentCol;
 				
 				continue;
 			}
+			
+		
 			
 			if (getNumber == 6) break;
 			

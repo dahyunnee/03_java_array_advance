@@ -1,5 +1,6 @@
 package step3_01.arrayAdvance;
 
+import java.util.Scanner;
 
 /*
   
@@ -19,6 +20,49 @@ public class ArrayEx48_테스트문제 {
 
 	public static void main(String[] args) {
 
+		Scanner scan = new Scanner(System.in);
+		
+		int countNumber = 0; 	//자리수
+		
+		System.out.print("[숫자 입력] : ");
+		int getNumber = scan.nextInt();
+		
+		int temp = getNumber;
+		
+		while(getNumber >= 1) {
+		
+			getNumber /= 10;
+			countNumber ++;		
+		}
+		
+		getNumber = temp;
+		int[] numberArray = new int[countNumber + 1];
+		int indexofNumberArray = 0;
+		
+		//배열에 저장
+		while(getNumber > 1) {
+			
+			numberArray[indexofNumberArray ++] = getNumber % 10;
+			getNumber /= 10;
+		}
+		
+		//짝수자리인 경우
+		if ( countNumber % 2 == 0) {
+			
+			System.out.println("짝수자리의 수 입니다.");
+		}
+		//아닌경우
+		else {
+			
+			if (countNumber == 1) System.out.println(temp + " ==> " + temp);
+			else {
+				
+				countNumber /= 2;
+				System.out.println(temp + " ==> " + numberArray[countNumber]);
+			}
+		}
+		
+		
 		
 	}
 
