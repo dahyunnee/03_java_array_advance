@@ -91,23 +91,37 @@ public class ArrayEx47_테스트문제정답 {
 			// 5
 			// 6 
 			// 7 -> 돌아가기
-			// 7 -> 처음위치
-			// 8
+			// 7 -> 처음위치   
+			// 8				7 -> 4 ~ 0 / 13 -> 11 ~ 7 / 19 -> 
 			// 9
-			// 10
+			// 10  
 			// 11 
-			//12 -> 돌아가기
-			//12 -> 처음 위치
+			//12
+			//13 -> 돌아가기 처음위치
+			
+			
 			
 			//2번과 결합 
 			System.out.println("count " + count);
-			if ( (count-2) % 5 == 0 && count != 2) {
-				
+			//if ( (count-2) % 5 == 0 && count != 2) {
+			if ( count % 6 == 1 && count != 1) {
 				System.out.println("5번 입력해서 왔던 길로 되돌아 갑니다. ");
+				
+				
+				yx[count][0] = currentRow;
+				yx[count][1] = currentCol;
 				
 				//돌아가기
 				
-				for (int i = count - 3 ; i >= count - 7; i--) {
+				//*****
+//				if ( count == 7) {
+//					
+//					count --;
+//				}
+				
+				//for (int i = count - 3 ; i >= count - 7; i--) {
+				for (int i = count - 3 ; i >= count - 6; i--) {
+					
 					//i번만큼 반복
 					System.out.println("i = " + i);
 					//현재위치 찾기
@@ -151,9 +165,20 @@ public class ArrayEx47_테스트문제정답 {
 					currentRow = movetoRow;
 					currentCol = movetoCol;
 					
+					prevCol = currentCol;
+					prevRow = currentRow;
+					
 					System.out.println(currentRow + "/" + currentCol);
 					
+					if ( i == 1 && count == 7) {
+						
+					}
+					
 				}	
+				//******
+				//if (count == 6) count ++;
+				
+				
 				
 			}
 			
@@ -191,7 +216,7 @@ public class ArrayEx47_테스트문제정답 {
 				movetoValue = game[currentRow][currentCol]; 
 				game[currentRow][currentCol] = 0;
 				game[currentRow][prevCol] = movetoValue;
-				//PREVCOL이 이상???
+				
 				
 				yx[count][0] = currentRow;
 				yx[count ++][1] = currentCol; 
